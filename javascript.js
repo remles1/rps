@@ -14,10 +14,10 @@ function getComputerChoice(){
     return choice;
 }
 
-function getHumanChoice(){
-    const x = prompt("1 - rock, 2 - paper, 3 - scissors") - 1;
-    return x;
-}
+// function getHumanChoice(){
+//     const x = prompt("1 - rock, 2 - paper, 3 - scissors") - 1;
+//     return x;
+// }
 
 function playRound(humanChoice, computerChoice){
     console.log("human: " + convertNumToString(humanChoice));
@@ -30,45 +30,58 @@ function playRound(humanChoice, computerChoice){
         if(humanChoice == 1){
             console.log("human wins");
             humanScore++;
-            
+            scores.querySelector("#playerScore").textContent = "Player: " + humanScore;
         }
         else{
             console.log("computer wins");
             computerScore++;
+            scores.querySelector("#computerScore").textContent = "Computer: " + computerScore;
         }
     }
     else if(humanChoice != 1 && computerChoice != 1){
         if(humanChoice == 0){
             console.log("human wins");
             humanScore++;
+            scores.querySelector("#playerScore").textContent = "Player: " + humanScore;
         }
         else{
             console.log("computer wins");
             computerScore++;
+            scores.querySelector("#computerScore").textContent = "Computer: " + computerScore;
         }
     }
     else{
         if(humanChoice == 2){
             console.log("human wins");
             humanScore++;
+            scores.querySelector("#playerScore").textContent = "Player: " + humanScore;
         }
         else{
             console.log("computer wins");
             computerScore++;
+            scores.querySelector("#computerScore").textContent = "Computer: " + computerScore;
         }
     }
 }
 
 let humanScore = 0, computerScore = 0;
 
-while(humanScore < 3 && computerScore < 3){
-    
-    console.log("human score: " + humanScore);
-    console.log("computer score: " + computerScore);
-    playRound(getHumanChoice(),getComputerChoice());
-}
 
-console.log("human score: " + humanScore);
-console.log("computer score: " + computerScore);
+let scores = document.querySelector("#scores");
 
 
+let rock_button = document.querySelector("#rock");
+let paper_button = document.querySelector("#paper");
+let scissors_button = document.querySelector("#scissors");
+
+rock_button.addEventListener("click", () => {
+    playRound(0,getComputerChoice());
+    });
+
+paper_button.addEventListener("click", () => {
+    playRound(1,getComputerChoice());
+});
+
+scissors_button.addEventListener("click", () => {
+    playRound(2,getComputerChoice());
+});
